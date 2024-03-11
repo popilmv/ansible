@@ -13,5 +13,5 @@
     - php-bcmath
     - php-curl
     state: present 
-#notify: "Restart apache2"
+  notify: "Restart apache2"
 
