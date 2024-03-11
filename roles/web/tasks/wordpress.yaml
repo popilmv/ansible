@@ -1,0 +1,24 @@
+---
+- name: Download WP
+  get_url: 
+    url: https://wordpress.org/latest.zip
+    dest: /tmp/latest.zip
+
+- name: Create dir for domain
+  ansible.builtin.file:
+    path: /var/www/exampledomain27.pp.ua
+    state: directory
+    mode: "0755"
+    owner: www-data
+    group: www-data
+
+- name: unpack source
+  shell: unzip /tmp/latest.zip -d /var/www/ansible.exampledomain27.pp.ua
+
+- name: move files 
+  shell: |
+    cd /var/www/ansible.exampledomain27.pp.ua 
+    mv wordpress/* .
+    rm -rf wordpress
+    cd .. 
+    chown -R www-data:www-data /var/www/ansible.exampledomain27.pp.ua
