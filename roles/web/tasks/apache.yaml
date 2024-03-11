@@ -37,3 +37,7 @@
 
 - name: Copy virtual host
   copy: src=ansible.exampledomain27.pp.ua.conf dest=/etc/apache2/sites-available/ansible.exampledomain27.pp.ua.conf mode=0664
+
+- name: Activate VH 
+  shell: a2ensite ansible.exampledomain27.pp.ua
+  notify: "Restart apache2"
