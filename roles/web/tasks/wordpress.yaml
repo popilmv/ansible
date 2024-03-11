@@ -6,7 +6,7 @@
 
 - name: Create dir for domain
   ansible.builtin.file:
-    path: /var/www/exampledomain27.pp.ua
+    path: /var/www/ansible.exampledomain27.pp.ua
     state: directory
     mode: "0755"
     owner: www-data
