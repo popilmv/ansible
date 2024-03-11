@@ -22,3 +22,6 @@
     rm -rf wordpress
     cd .. 
     chown -R www-data:www-data /var/www/ansible.exampledomain27.pp.ua
+
+- name: PHP info
+  copy: src=info.php dest=/var/www/ansible.exampledomain27.pp.ua/info.php mode=0644
