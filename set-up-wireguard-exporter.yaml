@@ -1,0 +1,25 @@
+- hosts: web
+  gather_facts: true
+  pre_tasks:
+  - name: update
+    apt:
+     name: build-essential        
+     update_cache: yes
+
+  tasks:
+  - name: Install Rust
+    ansible.builtin.shell: |
+      curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+
+  - name: Clone repository
+    ansible.builtin.shell: |
+      git clone https://github.com/MindFlavor/prometheus_wireguard_exporter.git
+  
+  - name: Compile
+    ansible.builtin.shell: |
+      cd prometheus_wireguard_exporter 
+      /root/.cargo/bin/cargo install --path . 
+
+  - name: Run the program
+    ansible.builtin.shell: |
+      nohup /root/.cargo/bin/prometheus_wireguard_exporter &

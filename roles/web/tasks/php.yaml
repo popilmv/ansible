@@ -1,0 +1,17 @@
+---
+- name: Install php 
+  apt: name=libapache2-mod-php state=present
+
+- name: Install other modules
+  apt: 
+    pkg:
+    - php-zip
+    - php-xml
+    - php-mysql
+    - php-gd
+    - php-mbstring
+    - php-bcmath
+    - php-curl
+    state: present 
+  notify: "Restart apache2"
+

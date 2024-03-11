@@ -1,0 +1,7 @@
+#this will be use for hosts named web and use role web and apt
+---
+- hosts: web 
+  roles:
+   - apt       
+   - web
+ 

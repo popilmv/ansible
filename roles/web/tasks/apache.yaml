@@ -1,0 +1,31 @@
+---
+- name: Install Apache
+  apt: 
+    pkg: 
+    - apache2
+    - apache2-utils
+    state: present 
+
+- name: Start Apache 
+  service: name=apache2 state=started enabled=yes
+  ignore_errors: True 
+
+- name: Activate modules
+  apache2_module:
+    state: present 
+    name: rewrite 
+
+- name: Activate modules - cache
+  apache2_module:
+    state: present 
+    name: cache 
+
+- name: Activate modules - headers
+  apache2_module:
+    state: present 
+    name: headers
+
+- name: Activate modules - deflate
+  apache2_module:
+    state: present 
+    name: deflate
