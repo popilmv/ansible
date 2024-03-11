@@ -13,7 +13,7 @@
     - php-bcmath
     - php-curl
     state: present 
-  notify: "Restart apache2"
 
 - name: copy php.ini
   copy: src=php.ini dest=/etc/php/7.4/apache2/php.ini mode=0644
+  notify: "Restart apache2"
