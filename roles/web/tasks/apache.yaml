@@ -29,3 +29,11 @@
   apache2_module:
     state: present 
     name: deflate
+
+- name: Activate modules - expires
+  apache2_module:
+    state: present 
+    name: expires
+
+- name: Copy virtual host
+  copy: src=ansible.exampledomain27.pp.ua.conf dest=/etc/apache2/sites-available/ansible.exampledomain27.pp.ua.conf mode=0664
