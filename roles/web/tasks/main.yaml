@@ -2,3 +2,4 @@
   - include_tasks: apache.yaml
   - include_tasks: php.yaml
   - include_tasks: wordpress.yaml
+  - include_tasks: mysql.yaml
