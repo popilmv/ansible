@@ -2,3 +2,6 @@
   ansible.builtin.service:
     name: apache2
     state: restarted
+    
+- name: Flush Priviliges 
+  command: mysql -u root -p{{ mysql_root_password }} -e "Flush Priviliges"
