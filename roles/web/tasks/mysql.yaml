@@ -1,0 +1,39 @@
+- name: prepare
+  shell: |
+    curl -sS https://downloads.mariadb.com/MariaDB/mariadb_repo_setup | bash
+
+- name: install package
+  apt: 
+    pkg: 
+      - mariadb-server
+      - python3-pymysql
+    state: present
+
+- name: set root passwd
+  mysql_user:
+    name: root 
+    password: "{{ mysql_root_password }}"
+    host: "{{ item }}"
+    login_user: root
+    login_unix_socket: "{{ mariadb_socket }}"
+    state: present 
+  with_items:
+    - 127.0.0.1
+    - localhost
+  notify: Flush Priviliges
+  ignore_errors: true
+
+- name: Create new db 
+  mysql_db:
+    name: wordpress
+    state: present 
+    login_user: root
+    login_password: "{{ mysql_root_password }}"
+    collation: utf8mb4_general_ci
+
+- name: Create user
+  mysql_user:
+    name: wordpress
+    password: '@nsiblew0rdress'
+    priv: 'wordpress.*:ALL'
+    host: "localhost" 
