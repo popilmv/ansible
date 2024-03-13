@@ -5,7 +5,7 @@
 - name: install package
   apt: 
     pkg: 
-      - mariadb-server=1:11.2.3+maria~ubuntu2204
+      - mariadb-server=1:11.2.3+maria~ubu2204
       - python3-pymysql
     state: present
 
