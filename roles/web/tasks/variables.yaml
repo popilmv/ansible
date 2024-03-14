@@ -1,0 +1,10 @@
+---
+# Variable configuration fot multiOS uses
+- name: Include OS-specific variables.
+  ansible.builtin.include_vars: "{{ item }}"
+# use spec only for some version - like for centos7 use ansible_os_family fot centos8 ansible_distribution
+  with_first_found:
+    - files:
+        - "variables/{{ ansible_os_family }}-{{ ansible_distribution_major_version }}.yml"
+        - "variables/{{ ansible_distribution }}.yml"
+      skip: true
