@@ -1,0 +1,13 @@
+---
+- name: Install httpd
+  yum: 
+    pkg:
+    - httpd 
+    state: present
+
+- name: Enable autostart httpd
+  service: name=httpd enabled=yes
+
+- name: Copy virtualhost
+  template: src=ansible.exampledomain27.pp.ua.conf dest=/etc/apache2/sites-available/ansible.exampledomain27.pp.ua.conf mode=0664
+  notify: "Restart httpd"
