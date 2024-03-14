@@ -1,0 +1,38 @@
+---
+- name: Download Wordpress sources
+  get_url:
+    url: https://wordpress.org/latest.zip
+    dest: /tmp/latest.zip
+
+- name: unpack Wordpress sources
+  shell: unzip /tmp/latest.zip -d /var/www/ansible.exampledomain27.pp.ua
+
+- name: move Wordpress files 
+  shell: |
+    cd /var/www/iteducenter.tk
+    mv wordpress/* .
+    rm -rf wordpress
+    cd ..
+    chown -R www-data:www-data /var/www/ansible.exampledomain27.pp.ua
+  when:
+    - ansible_facts['distribution'] == "Ubuntun"
+
+- name: move Wordpress files
+  shell: |
+    cd /var/www/iteducenter.tk
+    mv wordpress/* .
+    rm -rf wordpress
+    cd ..
+    chown -R apache:apache /var/www/iteducenter.tk
+  when:
+    - ansible_facts['distribution'] == "AlmaLinux"
+
+- name: copy info.php
+  copy: src=info.php dest=/var/www/ansible.exampledomain27.pp.ua/info.php owner=www-data group=www-data mode=0664
+  when:
+    - ansible_facts['distribution'] == "Ubuntu"
+
+- name: copy info.php
+  copy: src=info.php dest=/var/www/ansible.exampledomain27.pp.ua/info.php owner=apache group=apache mode=0664
+  when:
+    - ansible_facts['distribution'] == "AlmaLinux"
