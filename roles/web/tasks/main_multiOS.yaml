@@ -1,0 +1,11 @@
+---
+- include_tasks: variables.yaml
+- include_tasks: apache-debian.yaml
+  when:
+    - ansible_facts['distribution'] == "Debian"
+
+- include_tasks: apache-alma.yaml
+  when:
+    - ansible_facts['distribution'] == "AlmaLinux"
+- include_tasks: php.yaml
+- include_tasks: wordpress.yaml
