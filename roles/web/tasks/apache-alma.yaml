@@ -9,5 +9,5 @@
   service: name=httpd enabled=yes
 
 - name: Copy virtualhost
-  template: src=ansible.exampledomain27.pp.ua.conf dest=/etc/apache2/sites-available/ansible.exampledomain27.pp.ua.conf mode=0664
+  template: src=ansible.exampledomain27.pp.ua.conf dest=/etc/apache2/sites-available/ansible.exampledomain27.pp.ua.conf mode=0664 #will be directory named template with file that we need 
   notify: "Restart httpd"
