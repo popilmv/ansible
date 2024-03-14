@@ -1,0 +1,44 @@
+---
+- name: Install PHP module for Apache
+  apt: name=libapache2-mod-php8.2 state=present
+  when:
+    - ansible_facts['distribution'] == "Ubuntu"
+
+- name: Install PHP module for httpd
+  yum: name=php state=present
+  when:
+    - ansible_facts['distribution'] == "AlmaLinux"
+
+- name: Install other PHP modules
+  apt:
+    pkg:
+    - php-zip
+    - php-xml
+    - php-mysql
+    - php-gd
+    - php-mbstring
+    - php-bcmath
+    - php-curl
+    state: present
+  when:
+    - ansible_facts['distribution'] == "Ubuntu"
+
+- name: Install other PHP modules
+  yum:
+    pkg:
+    - php-zip
+    - php-xml
+    - php-mysqlnd
+    - php-gd
+    - php-mbstring
+    - php-bcmath
+    - php-curl
+    state: present
+  when:
+    - ansible_facts['distribution'] == "AlmaLinux"
+
+- name: 5. Copy php.ini
+  copy: src=php.ini dest=/etc/php/*/apache2/php.ini mode=0664
+  notify: "Restart apache2"
+  when:
+    - ansible_facts['distribution'] == "Ubuntu"
