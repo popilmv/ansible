@@ -26,3 +26,7 @@ In **tasks** there is [main.yaml](https://github.com/popilmv/ansible/blob/main/r
 **Files** will be copy to my destination VM 
 **handlers** like service ... restart
 
+Check our list of instances:
+```
+ansible-inventory -i file.yaml --list
+```
