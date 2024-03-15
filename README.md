@@ -28,5 +28,5 @@ In **tasks** there is [main.yaml](https://github.com/popilmv/ansible/blob/main/r
 
 Check our list of instances:
 ```
-ansible-inventory -i file.yaml --list
+ansible-inventory -i file.yaml --list --graph (as in table version)
 ```
