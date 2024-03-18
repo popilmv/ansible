@@ -3,4 +3,5 @@
   - include_tasks: php.yaml
   - include_tasks: wordpress.yaml
   - include_vars: vars/main.yaml
+  - include_vars: vars/dbpass.yaml
   - include_tasks: mysql.yaml
