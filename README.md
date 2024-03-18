@@ -30,3 +30,12 @@ Check our list of instances:
 ```
 ansible-inventory -i file.yaml --list --graph (as in table version)
 ```
+
+Vault
+For example - we have in **.vaultpass** qwerty123
+And passwd.yaml than have password: nht@FANwyf9tnm
+For encrypting, we will use: 
+```
+ansible-vault create --vault-file .vaultpass passwd.yaml
+```
+After this command info in our yaml will be not as key:value. It will be encrypted. 
